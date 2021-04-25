@@ -44,12 +44,12 @@ def create(user_account_number, first_name, last_name, email, password):
 
     else:
 
-        f.write(str(user_data));
+        f.write(str(user_data))
         completion_state = True
 
     finally:
 
-        f.close();
+        f.close()
         return completion_state
 
 

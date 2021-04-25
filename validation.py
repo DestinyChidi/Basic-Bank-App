@@ -1,5 +1,4 @@
 def account_number_validation(account_number):
-
     if account_number:
 
         try:
@@ -15,3 +14,16 @@ def account_number_validation(account_number):
 
     return False
 
+
+def withdrawal_check(withdrawal_amount):
+    if withdrawal_amount:
+
+        try:
+            int(withdrawal_amount)
+
+        except ValueError:
+            return False
+        except TypeError:
+            return False
+
+    return False

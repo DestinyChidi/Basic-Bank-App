@@ -50,9 +50,6 @@ def login():
         if user:
             bank_operation(user)
 
-        print('Invalid account or password')
-        login()
-
     else:
         print("Account Number Invalid: check that you have up to 10 digits and only integers")
         init()
@@ -92,10 +89,10 @@ def bank_operation(user):
 
     if selected_option == 1:
 
-        deposit_operation()
+        deposit_operation(user)
     elif selected_option == 2:
 
-        withdrawal_operation()
+        withdrawal_operation(user)
     elif selected_option == 3:
 
         logout()
@@ -108,21 +105,32 @@ def bank_operation(user):
         bank_operation(user)
 
 
-def withdrawal_operation():
-    print("withdrawal")
-    # get current balance
-    # get amount to withdraw
-    # check if current balance > withdraw balance
-    # deduct withdrawn amount form current balance
-    # display current balance
+def withdrawal_operation(user):
+    print("Withdrawal")
+
+    print("Your current Balance is: %s" % str(get_current_balance(user)))
+    withdrawal_amount = int(input("How much do you want to withdraw? \n"))
+
+    if withdrawal_amount <= int(get_current_balance(user)):
+        balance_after_withdrawal = int(get_current_balance(user)) - int(withdrawal_amount)
+        print("You Successfully Withdrawn %s" % str(withdrawal_amount))
+        print("And your Balance is %s" % str(balance_after_withdrawal))
+    else:
+        print("Sorry, Insufficient Balance")
+        bank_operation(user)
 
 
-def deposit_operation():
+def deposit_operation(user):
     print("Deposit Operations")
-    # get current balance
-    # get amount to deposit
-    # add deposited amount to current balance
-    # display current balance
+
+    print("Your current Balance is: %s" % str(get_current_balance(user)))
+    deposit_amount = int(input("How much do you want to deposit? \n"))
+
+    balance_after_deposit = int(get_current_balance(user)) + int(deposit_amount)
+    print("You Successfully Deposited %s" % str(deposit_amount))
+    print("And your Balance is %s" % str(balance_after_deposit))
+
+    bank_operation(user)
 
 
 def generation_account_number():
